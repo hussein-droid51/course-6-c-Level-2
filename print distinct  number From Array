@@ -1,0 +1,80 @@
+#include <iostream>   
+using namespace std;  
+void FillArayWithNumber(int Arr[100],int& ArrLength)
+{
+    Arr[0] = 10;
+    Arr[1] = 10;
+    Arr[2] = 10;
+    Arr[3] = 50;
+    Arr[4] = 50;
+    Arr[5] = 70;
+    Arr[6] = 70;
+    Arr[7] = 70;
+    Arr[8] = 70;
+    Arr[9] = 90;
+}
+
+
+void AddArryElement(int Number, int Arr[100], int& ArrLength)
+{
+    ArrLength++;
+    Arr[ArrLength - 1] = Number;
+}
+short FoundNumber(int Number,int Arr[100], int Arrlength )
+{
+    for (int i = 0; i < Arrlength; i++)
+    {
+        if (Arr[i] == Number)
+        {
+            return i;
+        }
+
+    }
+    return -1;
+}
+short IsNumberFound(int Number, int Arr[100], int& Arrlength)
+{
+	return (FoundNumber(Number, Arr, Arrlength) != -1);
+}
+void copydistinctNumber(int sourceArry[100], int destionArry[100], int arrLength,int &ArrDestintlength)
+{
+    //int DigitToCheckint=sourceArry[100];
+    for (int i = 0; i < arrLength; i++)
+    {
+        if(!IsNumberFound(sourceArry[i],destionArry,ArrDestintlength))
+        AddArryElement(sourceArry[i], destionArry, ArrDestintlength);
+    }
+
+}
+
+
+void PrintArray(int arr[100], int& arrLength)
+{
+    // Loop through the array and print each element followed by a space.
+    for (int i = 0; i < arrLength; i++)
+        cout << arr[i] << " ";
+
+    cout << "\n";  // Print a newline after printing all elements.
+}
+
+int main()
+{
+    int arr[100] ;
+    int arrLength=10;
+    int arr2[100];
+    int arr2Length=0;
+
+    FillArayWithNumber(arr, arrLength);
+
+    copydistinctNumber(arr, arr2, arrLength, arr2Length);
+
+
+    cout << "\nArray 1 elements:\n";
+    PrintArray(arr, arrLength);
+
+    cout << "\nArray 2 distinct element:\n";
+    PrintArray(arr2, arr2Length);
+
+
+    return 0;
+}
